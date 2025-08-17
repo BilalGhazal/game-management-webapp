@@ -6,9 +6,7 @@
     <title><%= title %></title>
 </head>
 <body>
-    <header>
-        <h1>GameOn</h1>
-    </header>
+    <%- include("partials/header") %>
     <div>
         <% data.forEach(datum => { %>
             <img src="<%= datum.image_url %>">
