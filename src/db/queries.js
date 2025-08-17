@@ -42,7 +42,7 @@ async function getGamesInfo() {
     GROUP BY games.title, games.image_url, developers.name;`
 
     const result = await pool.query(query)
-    return result
+    return result.rows
 }
 
 

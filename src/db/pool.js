@@ -1,8 +1,8 @@
 const {Pool} = require("pg")
 
 module.exports = new Pool ({
-    host: PGHOST,
+    host: process.env.PGHOST,
     user: process.env.PGUSER,
-    database: PGDATABASE,
+    database: process.env.PGDATABASE,
     port: process.env.PGPORT
 })
