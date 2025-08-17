@@ -1,4 +1,49 @@
+:root {
+    --search-height: 2rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
 .navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    font-size: 2rem;
+}
+
+.search-container input {
+    width: 300px;
+    max-width: 100%;
+    height: var(--search-height);
+    box-sizing: border-box; 
+}
+
+.search-container button {
+    height: var(--search-height);
+    box-sizing: border-box;
+}
+
+.search-container button:hover {
+    cursor: pointer;
+}
+
+
+.links {
     display: flex;
 }
 
+.links > a {
+    font-size: 1.25rem;
+}
+
+.links > :first-child {
+    margin-right: 10px;
+}
