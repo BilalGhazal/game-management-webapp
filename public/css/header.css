@@ -2,6 +2,14 @@
     --search-height: 2rem;
 }
 
+header {
+    background-color: rgb(27, 18, 18);
+}
+
+.navbar > * {
+    color: rgb(255, 49, 49);
+}
+
 a {
     text-decoration: none;
     color: inherit;
