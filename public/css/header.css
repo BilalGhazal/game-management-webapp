@@ -1,20 +1,16 @@
 :root {
     --search-height: 2rem;
+    --background-color: rgb(27, 18, 18);
+    --font-color: rgb(255, 49, 49);
 }
 
 header {
-    background-color: rgb(27, 18, 18);
+    background-color: var(--background-color);
 }
 
 .navbar > * {
-    color: rgb(255, 49, 49);
+    color: var(--font-color);
 }
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
 
 .navbar {
     display: flex;
@@ -42,7 +38,6 @@ a {
 .search-container button:hover {
     cursor: pointer;
 }
-
 
 .links {
     display: flex;
