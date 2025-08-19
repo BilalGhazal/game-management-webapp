@@ -1,10 +1,8 @@
 <div class="games-container">
     <% data.forEach(datum => { %>
         <div class="game-card">
-            <img src="<%= datum.image_url %>">
-            <div>Title: <%= datum.title %></div>
-            <div>Deverloper: <%= datum.name %></div>
-            <div>Genres: <%= datum.genre_names.join(", ") %></div>
+            <img src="<%= datum.image_url %>" width="150" height="200">
+            <p class="game-title"><%= datum.title %></p>
         </div>
     <% }) %>
 </div>
