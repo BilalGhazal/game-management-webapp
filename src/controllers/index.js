@@ -7,4 +7,10 @@ async function getHomepage(req, res) {
     res.render("index", {title: "Homepage", data: data})
 }
 
-module.exports = {getHomepage}
+function getAddGame(req, res) {
+
+    res.render("add-game", {title: "Add Game"})
+}
+
+
+module.exports = {getHomepage, getAddGame}
