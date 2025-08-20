@@ -1,0 +1,44 @@
+.add-game-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.add-game-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 40%;
+    height: 75%;
+    justify-content: center;
+}
+
+
+.add-game-input-container {
+    display: flex;
+    flex-direction: column;    
+}
+
+.add-game-input-container > label {
+    color: var(--font-color);
+    font-size: 1.25rem;
+}
+
+.add-game-input-container > input {
+    padding: 0.5rem;
+    width: 100%;
+}
+
+.add-game-form > button {
+    color: var(--font-color);
+    background-color: var(--background-color);
+    padding: 15px 10px;
+    align-self: center;
+    border: none;
+    margin-top: 10px;
+}
+
+.add-game-form > button:hover {
+    cursor: pointer;
+}
