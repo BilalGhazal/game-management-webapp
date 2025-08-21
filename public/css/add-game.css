@@ -25,7 +25,7 @@
     font-size: 1.25rem;
 }
 
-.add-game-input-container > input,  .add-game-input-container > select{
+.add-game-input-container > input,  .add-game-input-container > select {
     padding: 0.5rem;
     width: 100%;
 }
@@ -41,4 +41,30 @@
 
 .add-game-form > button:hover {
     cursor: pointer;
+}
+
+#selected-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.choice-div {
+    display: flex;
+    flex-direction: column;
+    background-color: gray;
+    border-radius: 5px;
+    padding: 10px 5px;
+    margin-top: 10px;
+}
+
+.close-button {
+    border-radius: 100%;
+    border: none;
+    width: fit-content;
+    align-self: self-end;
+}
+
+.choice-p {
+    margin: 0;
 }
