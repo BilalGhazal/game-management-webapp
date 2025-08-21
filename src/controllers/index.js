@@ -12,5 +12,9 @@ function getAddGame(req, res) {
     res.render("pages/add-game", {title: "Add Game"})
 }
 
+function getGenres(req, res) {
+    res.render("pages/browse-genres", {title: "Browse Genres"})
+}
 
-module.exports = {getHomepage, getAddGame}
+
+module.exports = {getHomepage, getAddGame, getGenres}
