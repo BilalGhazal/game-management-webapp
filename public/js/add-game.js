@@ -7,7 +7,7 @@ genres.addEventListener("change", (event) => {
     const selectedValue = event.target.value
     const selectedValueIndexStore = [...genresReferenceCopy.options].findIndex(option => option.value === selectedValue)
     const selectedValueIndexRemove = [...genres.options].findIndex(option => option.value === selectedValue)
-    console.log(genresReferenceCopy.options[selectedValueIndexStore])
+    
     genresOrder[selectedValueIndexStore] = new Option(genresReferenceCopy.options[selectedValueIndexStore].text,
                                                 genresReferenceCopy.options[selectedValueIndexStore].value)
     

@@ -10,7 +10,7 @@ async function getHomepage(req, res) {
 
 function getAddGame(req, res) {
 
-    res.render("pages/add-game", {title: "Add Game"})
+    res.render("pages/add-game", {title: "Add Game", pageJS: "add-game"})
 }
 
 async function getGenres(req, res) {

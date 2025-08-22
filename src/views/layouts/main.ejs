@@ -9,13 +9,17 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/add-game.css">
 
-    <script defer src="js/add-game.js"></script>
 </head>
 <body>
     <div class="main-container">
          <%- include("../partials/header") %>
     
         <%- body %>
+
+        <% if (typeof pageJS !== "undefined") { %>
+            <script defer src="js/<%= pageJS %>.js"></script>
+        <% } %>
+
     </div>
 </body>
 </html>
