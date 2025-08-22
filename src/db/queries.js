@@ -46,4 +46,12 @@ async function getGamesInfo() {
 }
 
 
-module.exports = {insertGameInfo, getGamesInfo}
+async function getGenresFromDatabase() {
+    const query = `SELECT name FROM genres;`
+    
+    const result = await pool.query(query)
+    return result.rows
+}
+
+
+module.exports = {insertGameInfo, getGamesInfo, getGenresFromDatabase}
