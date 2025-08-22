@@ -12,8 +12,10 @@ function getAddGame(req, res) {
     res.render("pages/add-game", {title: "Add Game"})
 }
 
-function getGenres(req, res) {
-    res.render("pages/browse-genres", {title: "Browse Genres"})
+async function getGenres(req, res) {
+    const data = await db.getGenresFromDatabase()
+    
+    res.render("pages/browse-genres", {title: "Browse Genres", data: data})
 }
 
 
