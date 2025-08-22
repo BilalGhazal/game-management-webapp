@@ -1,7 +1,5 @@
 <div class="genres-container">
     <% data.forEach(datum => { %>
-        <div class="individual-genre-container">
-            <a href="/browse-genres/genre/<%= datum.urlName %>"><%= datum.name %></a>
-        </div>
+            <a href="/browse-genres/genre/<%= datum.urlName %>" class="individual-genre-container"><%= datum.name %></a>
     <% }) %>
 </div>
