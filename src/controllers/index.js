@@ -7,7 +7,7 @@ async function getHomepage(req, res) {
 
     const dataMod = data.map(datum => ({
         ...datum,
-        urlName: slugify(`${datum.title}-${datum.name}`, {lower: true})
+        urlName: slugify(`${datum.title}-${datum.id}`, {lower: true})
     }))
 
     res.render("pages/index", {title: "Homepage", data: dataMod})

@@ -9,4 +9,6 @@ router.get("/add-game", indexController.getAddGame)
 router.get("/browse-genres", indexController.getGenres)
 
 
+
+
 module.exports = router

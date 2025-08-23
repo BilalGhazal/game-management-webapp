@@ -35,12 +35,8 @@ async function insertGameInfo(gameTitle, developerName, imageUrl, genres) {
 
 async function getGamesInfo() {
 
-    const query = `SELECT games.title, games.image_url, developers.name, ARRAY_AGG(genres.name) AS genre_names FROM games
-    JOIN developers ON games.developer_id = developers.id
-    JOIN game_genres ON games.id = game_genres.game_id
-    JOIN genres ON game_genres.genre_id = genres.id
-    GROUP BY games.title, games.image_url, developers.name;`
-
+    const query = `SELECT id, title, image_url FROM games;`
+    
     const result = await pool.query(query)
     return result.rows
 }
