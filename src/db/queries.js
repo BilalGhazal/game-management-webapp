@@ -2,7 +2,7 @@ const pool = require("./pool")
 
 
 async function insertGameInfo(gameTitle, developerName, imageUrl, genres) {
-    
+
     const insertDeveloperNameQuery = `INSERT INTO developers (name)
     VALUES ($1)
     ON CONFLICT (name) DO NOTHING;`
@@ -36,13 +36,14 @@ async function insertGameInfo(gameTitle, developerName, imageUrl, genres) {
 async function getGamesInfo() {
 
     const query = `SELECT id, title, image_url FROM games;`
-    
+
     const result = await pool.query(query)
     return result.rows
 }
 
 
 async function getGenresFromDatabase() {
+
     const query = `SELECT name FROM genres;`
     
     const result = await pool.query(query)
@@ -50,4 +51,17 @@ async function getGenresFromDatabase() {
 }
 
 
-module.exports = {insertGameInfo, getGamesInfo, getGenresFromDatabase}
+async function getIndividualGameInfo() {
+
+    const query = `SELECT games.title, games.image_url, developers.name, ARRAY_AGG(genres.name) AS genre_names FROM games
+    JOIN developers ON games.developer_id = developers.id
+    JOIN game_genres ON games.id = game_genres.game_id
+    JOIN genres ON game_genres.genre_id = genres.id
+    WHERE games.id = ($1)
+    GROUP BY games.id, games.title, games.image_url, developers.name;`
+
+    const result = await pool.query(query)
+    return result.rows
+}
+
+module.exports = {insertGameInfo, getGamesInfo, getGenresFromDatabase, getIndividualGameInfo}
