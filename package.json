@@ -15,6 +15,9 @@
     "nodemon": "^3.1.10"
   },
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "brew services start postgresql@14 && nodemon app.js",
+    "startdb": "brew services start postgresql@14",
+    "stopdb": "brew services stop postgresql@14",
+    "checkdb": "brew services list | awk '/^postgresql@14/ {print $2}'"
   }
 }

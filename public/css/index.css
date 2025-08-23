@@ -8,6 +8,10 @@
     align-items: center;
 }
 
+.game-card:hover {
+    transform: scale(1.1);
+}
+
 img {
     width: 150;
     height: 200;
