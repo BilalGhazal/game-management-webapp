@@ -51,7 +51,7 @@ async function getGenresFromDatabase() {
 }
 
 
-async function getIndividualGameInfo() {
+async function getIndividualGameInfo(id) {
 
     const query = `SELECT games.title, games.image_url, developers.name, ARRAY_AGG(genres.name) AS genre_names FROM games
     JOIN developers ON games.developer_id = developers.id
@@ -60,8 +60,8 @@ async function getIndividualGameInfo() {
     WHERE games.id = ($1)
     GROUP BY games.id, games.title, games.image_url, developers.name;`
 
-    const result = await pool.query(query)
-    return result.rows
+    const result = await pool.query(query, [id])
+    return result.rows[0] || null
 }
 
 module.exports = {insertGameInfo, getGamesInfo, getGenresFromDatabase, getIndividualGameInfo}
