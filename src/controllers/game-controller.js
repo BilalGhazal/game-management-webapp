@@ -2,9 +2,20 @@ const db = require("../db/queries")
 
 
 async function getIndividualGamePage(req, res) {
-    const data = await db.getIndividualGameInfo()
+    const id = req.params.id
+    const data = await db.getIndividualGameInfo(id)
 
-    res.render("pages/individal-game-page", {title: data[0].title, data: data})
+    console.log(id)
+    console.log(data)
+    
+
+    if (data) {
+        res.render("pages/individual-game-page", {title: data.title, data: data})
+    }
+
+    else {
+        res.render("pages/error-page", {title: "Error"})
+    }  
 }
 
 

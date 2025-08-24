@@ -8,10 +8,13 @@ async function getHomepage(req, res) {
     res.render("pages/index", {title: "Homepage", data: data})
 }
 
+
 function getAddGame(req, res) {
 
     res.render("pages/add-game", {title: "Add Game", pageJS: "add-game"})
 }
+
+
 
 async function getGenres(req, res) {
     const data = await db.getGenresFromDatabase()

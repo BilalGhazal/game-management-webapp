@@ -3,6 +3,7 @@ const router = express.Router()
 const indexController = require("../controllers/index-controller")
 const gameController = require("../controllers/game-controller")
 
+
 router.get("/", indexController.getHomepage)
 
 router.get("/add-game", indexController.getAddGame)
