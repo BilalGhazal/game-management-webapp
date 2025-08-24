@@ -5,12 +5,7 @@ const slugify = require("slugify")
 async function getHomepage(req, res) {
     const data = await db.getGamesInfo()
 
-    const dataMod = data.map(datum => ({
-        ...datum,
-        urlName: slugify(`${datum.title}-${datum.id}`, {lower: true})
-    }))
-
-    res.render("pages/index", {title: "Homepage", data: dataMod})
+    res.render("pages/index", {title: "Homepage", data: data})
 }
 
 function getAddGame(req, res) {

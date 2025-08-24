@@ -1,6 +1,6 @@
 <div class="games-container">
     <% data.forEach(datum => { %>
-        <a href="/game/<%= datum.urlName %>" class="game-card">
+        <a href="/game/<%= datum.id %>" class="game-card">
             <img src="<%= datum.image_url %>" width="150" height="200">
             <p class="game-title"><%= datum.title %></p>
         </a>
