@@ -64,4 +64,16 @@ async function getIndividualGameInfo(id) {
     return result.rows[0] || null
 }
 
-module.exports = {insertGameInfo, getGamesInfo, getGenresFromDatabase, getIndividualGameInfo}
+
+async function getGamesForGenre(id) {
+    
+    const query = `SELECT games.id, games.title, games.image_url, genres.name FROM games
+    JOIN game_genres ON games.id = game_genres.game_id
+    JOIN genres ON game_genres.genre_id = genres.id
+    WHERE genres.id = ($1);`
+
+    const result = await pool.query(query, [id])
+    return result.rows
+}
+
+module.exports = {insertGameInfo, getGamesInfo, getGenresFromDatabase, getIndividualGameInfo, getGamesForGenre}
