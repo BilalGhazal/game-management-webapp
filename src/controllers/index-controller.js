@@ -21,7 +21,7 @@ async function getGenres(req, res) {
 
     const dataMod = data.map(datum => ({
         ...datum,
-        urlName: slugify(datum.name, {lower: true})
+        urlName: slugify(`${datum.name} ${datum.id}`, {lower: true})
     }))
 
     
