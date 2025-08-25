@@ -15,4 +15,24 @@ async function getIndividualGamePage(req, res) {
 }
 
 
+async function getGamesInfoForGenre(req, res) {
+
+    const id = Number(req.params.slug.split("-").pop())
+    
+    if (isNaN(id)) {
+        return res.render("pages/error-page", {title: "Error", message: "Invalid game ID"})
+    }
+
+    const data = await db.getGamesForGenre(id)
+
+    if (data.length > 0) {
+        res.render("pages/games-of-genre", {title: data[0].name, data: data})
+    }
+
+    else {
+        res.render("pages/error-page", {title: "Error", message: "No games found for this genre"})
+    }
+}
+
+
 module.exports = {getIndividualGamePage}
