@@ -44,7 +44,7 @@ async function getGamesInfo() {
 
 async function getGenresFromDatabase() {
 
-    const query = `SELECT name FROM genres;`
+    const query = `SELECT * FROM genres;`
     
     const result = await pool.query(query)
     return result.rows
