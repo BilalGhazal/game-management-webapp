@@ -12,5 +12,7 @@ router.get("/browse-genres", indexController.getGenres)
 
 router.get("/game/:id", gameController.getIndividualGamePage)
 
+router.get("/browse-genres/genre/:slug", gameController.getGamesInfoForGenre)
+
 
 module.exports = router

@@ -5,7 +5,12 @@ const slugify = require("slugify")
 async function getHomepage(req, res) {
     const data = await db.getGamesInfo()
 
-    res.render("pages/index", {title: "Homepage", data: data})
+    if (data && data.length > 0) {
+        res.render("pages/index", {title: "Homepage", data: data})
+    }
+    else {
+        res.status(404).render("pages/error-page", {title: "Error", message: "No Games Found"})
+    }
 }
 
 
@@ -13,7 +18,6 @@ function getAddGame(req, res) {
 
     res.render("pages/add-game", {title: "Add Game", pageJS: "add-game"})
 }
-
 
 
 async function getGenres(req, res) {
