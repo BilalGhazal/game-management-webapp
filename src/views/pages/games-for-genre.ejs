@@ -1,0 +1,15 @@
+<div class="games-genre-container">
+    <div class="genre-name-container">
+        <p>
+            <%= data[0].name %> Games
+        </p>
+    </div>
+    <div class="games-displayed">
+        <% data.forEach(datum => { %>
+            <a href="/game/<%= datum.id %>" class="game-card">
+                <img src="<%= datum.image_url %>" width="150" height="200">
+                <p class="game-title"><%= datum.title %></p>
+            </a>
+        <% }) %>
+    </div>
+</div>

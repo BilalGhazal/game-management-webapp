@@ -20,7 +20,7 @@ async function getGamesInfoForGenre(req, res) {
     const data = await db.getGamesForGenre(id)
 
     if (data.length > 0) {
-        res.render("pages/games-of-genre", {title: data[0].name, data: data})
+        res.render("pages/games-for-genre", {title: data[0].name, data: data})
     }
 
     else {
