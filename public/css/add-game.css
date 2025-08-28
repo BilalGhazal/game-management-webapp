@@ -32,7 +32,7 @@
 
 .add-game-form > button {
     color: var(--font-color);
-    background-color: var(--background-color);
+    background-color: var(--background-color-header);
     padding: 15px 10px;
     align-self: center;
     border: none;
@@ -52,10 +52,12 @@
 .choice-div {
     display: flex;
     flex-direction: column;
-    background-color: gray;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
     border-radius: 5px;
     padding: 10px 5px;
     margin-top: 10px;
+
 }
 
 .close-button {

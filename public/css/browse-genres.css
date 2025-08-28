@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 5px solid var(--background-color);
+    border: 5px solid var(--background-color-header);
     border-radius: 5px;
     font-size: 1.25rem;
     color: var(--font-color);
