@@ -22,3 +22,11 @@
 .individual-genre-container:hover {
     transform: scale(1.05);
 }
+
+.genre-name-span {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+}

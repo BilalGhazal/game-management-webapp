@@ -1,5 +1,11 @@
 <div class="genres-container">
     <% data.forEach(datum => { %>
-            <a href="/browse-genres/genre/<%= datum.urlName %>" class="individual-genre-container"><%= datum.name %></a>
+            <a href="/browse-genres/genre/<%= datum.urlName %>" class="individual-genre-container"
+                <% if (images[datum.name.toLowerCase()]) { %>
+                style="background-image: url('<%= images[datum.name.toLowerCase()] %>');
+                background-size: cover;
+                background-repeat: no-repeat;"
+                <% } %> >
+                <span class="genre-name-span"><%= datum.name %></span></a>
     <% }) %>
 </div>
