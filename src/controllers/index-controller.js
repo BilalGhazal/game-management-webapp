@@ -1,5 +1,6 @@
 const db = require("../db/queries")
 const slugify = require("slugify")
+const {genresImages} = require("../data/genres-images")
 
 
 async function getHomepage(req, res) {
@@ -29,7 +30,7 @@ async function getGenres(req, res) {
     }))
 
     
-    res.render("pages/browse-genres", {title: "Browse Genres", data: dataMod})
+    res.render("pages/browse-genres", {title: "Browse Genres", data: dataMod, images: genresImages})
 }
 
 
