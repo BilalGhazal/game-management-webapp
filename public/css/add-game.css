@@ -70,3 +70,14 @@
 .choice-p {
     margin: 0;
 }
+
+.game-title-input-container {
+    position: relative;
+}
+
+.suggested-game-posters-container {
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    left: 0;
+}
