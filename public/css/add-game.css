@@ -80,4 +80,9 @@
     width: 100%;
     top: 100%;
     left: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+    height: calc(var(--number-of-rows-for-games-posters) * var(--games-posters-row-height));
+    overflow-y: scroll;
 }

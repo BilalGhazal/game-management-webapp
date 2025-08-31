@@ -1,3 +1,12 @@
+:root {
+    --search-height: 2rem;
+    --background-color-header: rgb(27, 18, 18);
+    --background-color-main: rgb(245, 245, 245);
+    --font-color: rgb(255, 49, 49);
+    --games-posters-row-height: 150px;
+    --number-of-rows-for-games-posters: 2;
+}
+
 * {
   box-sizing: border-box;
 }
