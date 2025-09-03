@@ -4,7 +4,7 @@
     --background-color-main: rgb(245, 245, 245);
     --font-color: rgb(255, 49, 49);
     --games-posters-row-height: 150px;
-    --number-of-rows-for-games-posters: 2;
+    --number-of-columns-for-games-posters: 2;
 }
 
 * {

@@ -1,4 +1,5 @@
 const db = require("../db/queries")
+const slugify = require("slugify")
 
 
 async function getIndividualGamePage(req, res) {
@@ -29,4 +30,30 @@ async function getGamesInfoForGenre(req, res) {
 }
 
 
-module.exports = {getIndividualGamePage, getGamesInfoForGenre}
+async function fetchGamePosters(req, res) {
+    const slug = slugify(req.params.gameTitle)
+    const url = `https://api.rawg.io/api/games?key=${process.env.APIKEY}&search=${slug}`
+
+    try {
+        const response = await fetch(url)
+        
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`)
+            
+        }
+
+        const gameData = await response.json()
+        const numberOfImages = gameData.results.length >= 10 ? 10 : gameData.results.length
+        const gameDataResults = gameData.results.splice(0, numberOfImages)
+        const gamePosters = gameDataResults.map((game) => game.background_image)
+
+        res.json(gamePosters)
+    } 
+    
+    catch (err) {
+        console.log(err.message)
+    }
+}
+
+
+module.exports = {getIndividualGamePage, getGamesInfoForGenre, fetchGamePosters}

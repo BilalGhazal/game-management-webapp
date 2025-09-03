@@ -1,7 +1,8 @@
 const express = require("express")
 require("dotenv").config()
 const path = require("path")
-const indexRouter = require("./src/routes/index")
+const indexRouter = require("./src/routes/index-router")
+const apiRouter = require("./src/routes/api-router")
 const PORT = process.env.PORT || 8080
 const app = express()
 const expressLayouts = require("express-ejs-layouts")
@@ -16,7 +17,7 @@ app.use(express.urlencoded({extended: true}))
 
 
 app.use("/", indexRouter)
-
+app.use("/api/games", apiRouter)
 
 
 app.listen(PORT, () => {

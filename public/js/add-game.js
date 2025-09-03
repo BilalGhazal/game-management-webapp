@@ -3,6 +3,8 @@ const genresReferenceCopy = genres.cloneNode(true)
 const genresOrder = {}
 const selectdGenres = document.querySelector("#selected-genres")
 
+const gamePostersContainer = document.querySelector(".suggested-game-posters-container")
+
 genres.addEventListener("change", (event) => {
     const selectedValue = event.target.value
     const selectedValueIndexStore = [...genresReferenceCopy.options].findIndex(option => option.value === selectedValue)
@@ -46,4 +48,18 @@ function removeTag(event) {
     const index = Number(tagDiv.dataset.index)
     genres.options.add(genresOrder[index], index)
     tagDiv.remove()
+}
+
+
+async function displayGamePosters(gameTitle) {
+    const url = `/api/games/search/:${gameTitle}`
+    const response = await fetch(url)
+    const gamePosters = await response.json()
+    
+    gamePosters.forEach((gamePoster) => {
+        const img = document.createElement("img")
+        img.src = gamePoster
+        img.classList.add("suggested-game-poster")
+        gamePostersContainer.appendChild(img)
+    })
 }
