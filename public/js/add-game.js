@@ -86,6 +86,13 @@ async function displayGamePosters(gameTitle) {
 
     console.log(gamePosters)
 
+    if (gamePosters.length === 0) {
+        const p = document.createElement("p")
+        p.textContent = "No posters for this game. Make sure the game exists."
+        gamePostersContainer.appendChild(p)
+        return
+    }
+
     gamePosters.forEach((gamePoster) => {
         const div = document.createElement("div")
         div.classList.add("suggested-game-poster-div")
@@ -118,7 +125,7 @@ function debounce(inputSelector, functionRef) {
 
 
 function selectGamePoster(event) {
-
+    Array.from(event.currentTarget.parentElement.children).forEach(child => child.classList.remove("selected"))
 
     if (event.currentTarget.classList.contains("selected")){
         event.currentTarget.classList.remove("selected")
@@ -126,13 +133,16 @@ function selectGamePoster(event) {
     }
     else {
         event.currentTarget.classList.add("selected")
-        selectedGamePoster.value = event.currentTarget.src
+        selectedGamePoster.value = event.currentTarget.children[0].src
     }
 }
 
 
-
-gameTitleInput.addEventListener("focus", () => showWrapper(gamePostersContainerWrapper))
+gameTitleInput.addEventListener("focus", () => {
+    if (gameTitleInput.value !== "") {
+        showWrapper(gamePostersContainerWrapper)
+    }
+})
 
 
 debounce(gameTitleInput, displayGamePosters)
