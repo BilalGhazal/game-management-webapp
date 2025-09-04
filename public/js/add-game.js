@@ -3,7 +3,10 @@ const genresReferenceCopy = genres.cloneNode(true)
 const genresOrder = {}
 const selectdGenres = document.querySelector("#selected-genres")
 
+const gamePostersContainerWrapper = document.querySelector(".suggested-game-posters-container-wrapper")
 const gamePostersContainer = document.querySelector(".suggested-game-posters-container")
+const gameTitleInput = document.querySelector("#game-title")
+
 
 genres.addEventListener("change", (event) => {
     const selectedValue = event.target.value
@@ -18,7 +21,6 @@ genres.addEventListener("change", (event) => {
     
     addTag(selectedValue, selectedValueIndexStore)
 })
-
 
 
 function addTag(selectedValue, selectedValueIndexStore) {
@@ -51,11 +53,29 @@ function removeTag(event) {
 }
 
 
+function showWrapper(selector) {
+    if (selector.classList.contains("hidden")) {
+    selector.classList.remove("hidden");
+    }
+}
+
+function hideWrapper(selector) {
+    if (!selector.classList.contains("hidden")) {
+    selector.classList.add("hidden");
+    }
+}
+
+
 async function displayGamePosters(gameTitle) {
     const url = `/api/games/search/:${gameTitle}`
     const response = await fetch(url)
     const gamePosters = await response.json()
-    
+
+    gamePostersContainer.replaceChildren()
+    showWrapper(gamePostersContainerWrapper)
+
+    console.log(gamePosters)
+
     gamePosters.forEach((gamePoster) => {
         const img = document.createElement("img")
         img.src = gamePoster
@@ -63,3 +83,33 @@ async function displayGamePosters(gameTitle) {
         gamePostersContainer.appendChild(img)
     })
 }
+
+console.log(gameTitleInput)
+
+function debounce(inputSelector, functionRef) {
+    let timer
+    const waitTime = 500
+
+    inputSelector.addEventListener("keyup", (e) => {
+        clearTimeout(timer)
+        
+        const text = e.currentTarget.value
+
+        timer = setTimeout(() => {
+            functionRef(text)
+        }, waitTime)
+
+    })
+}
+
+
+
+
+
+gameTitleInput.addEventListener("focus", () => showWrapper(gamePostersContainerWrapper))
+gameTitleInput.addEventListener("blur", () => {
+    setTimeout(() => {hideWrapper(gamePostersContainerWrapper)}, 100)
+})
+
+
+debounce(gameTitleInput, displayGamePosters)

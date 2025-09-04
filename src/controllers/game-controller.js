@@ -45,6 +45,7 @@ async function fetchGamePosters(req, res) {
         const gameData = await response.json()
         const numberOfImages = gameData.results.length >= 10 ? 10 : gameData.results.length
         const gameDataResults = gameData.results.splice(0, numberOfImages)
+        console.log(gameDataResults)
         const gamePosters = gameDataResults.map((game) => game.background_image)
 
         res.json(gamePosters)
