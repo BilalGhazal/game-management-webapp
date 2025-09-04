@@ -92,11 +92,41 @@
     background-color: white;
 }
 
-.suggested-game-poster {
+.suggested-game-poster-div {
     width: 100%;
     height: var(--games-posters-row-height);
+    position: relative;
+}
+
+.suggested-game-poster {
+    height: 100%;
+    width: 100%;
 }
 
 .suggested-game-poster:hover {
     cursor: pointer;
+}
+
+.selected::before, .selected::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+}
+
+.selected::before {
+    content: "";
+    background-color: rgba(0, 128, 0, 0.3);
+}
+
+.selected::after {
+    content: "\2713";
+    font-size: 2rem;
+    color: white;
+    font-weight: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -6,6 +6,16 @@ const selectdGenres = document.querySelector("#selected-genres")
 const gamePostersContainerWrapper = document.querySelector(".suggested-game-posters-container-wrapper")
 const gamePostersContainer = document.querySelector(".suggested-game-posters-container")
 const gameTitleInput = document.querySelector("#game-title")
+const selectedGamePoster = document.querySelector("#selected-game-poster")
+
+
+
+document.addEventListener("click", (e) => {
+    if (!gamePostersContainerWrapper.contains(e.target) && e.target !== gameTitleInput) {
+        gamePostersContainerWrapper.classList.add("hidden")
+    }
+
+})
 
 
 genres.addEventListener("change", (event) => {
@@ -77,10 +87,14 @@ async function displayGamePosters(gameTitle) {
     console.log(gamePosters)
 
     gamePosters.forEach((gamePoster) => {
+        const div = document.createElement("div")
+        div.classList.add("suggested-game-poster-div")
+        div.addEventListener("click", selectGamePoster)
         const img = document.createElement("img")
         img.src = gamePoster
         img.classList.add("suggested-game-poster")
-        gamePostersContainer.appendChild(img)
+        div.appendChild(img)
+        gamePostersContainer.appendChild(div)
     })
 }
 
@@ -103,13 +117,22 @@ function debounce(inputSelector, functionRef) {
 }
 
 
+function selectGamePoster(event) {
+
+
+    if (event.currentTarget.classList.contains("selected")){
+        event.currentTarget.classList.remove("selected")
+        selectedGamePoster.value = ""
+    }
+    else {
+        event.currentTarget.classList.add("selected")
+        selectedGamePoster.value = event.currentTarget.src
+    }
+}
 
 
 
 gameTitleInput.addEventListener("focus", () => showWrapper(gamePostersContainerWrapper))
-gameTitleInput.addEventListener("blur", () => {
-    setTimeout(() => {hideWrapper(gamePostersContainerWrapper)}, 100)
-})
 
 
 debounce(gameTitleInput, displayGamePosters)
