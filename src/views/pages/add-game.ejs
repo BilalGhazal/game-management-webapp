@@ -16,7 +16,7 @@
         
         <div class="add-game-input-container">
             <label for="genres">Genres:</label>
-            <select id="genres" name="genres" required>
+            <select id="genres" name="genres">
                 <option value="" selected>Choose an option</option>
                 <option value="action">Action</option>
                 <option value="adventure">Adventure</option>
@@ -40,7 +40,8 @@
                 <option value="card/board">Card/Board</option>
                 <option value="other">Other</option>
             </select>
-            <div id="selected-genres"></div>
+            <div id="selected-genres-div"></div>
+            <input id="selected-genres" name-="selected-genres" type="hidden" required>
         </div>
         
         <button type="submit">Add Game</button>

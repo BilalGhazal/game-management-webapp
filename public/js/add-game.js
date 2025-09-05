@@ -1,13 +1,32 @@
+const form = document.querySelector(".add-game-form")
+
 const genres = document.querySelector("#genres")
 const genresReferenceCopy = genres.cloneNode(true)
 const genresOrder = {}
-const selectdGenres = document.querySelector("#selected-genres")
+const selectdGenresDiv = document.querySelector("#selected-genres-div")
 
 const gamePostersContainerWrapper = document.querySelector(".suggested-game-posters-container-wrapper")
 const gamePostersContainer = document.querySelector(".suggested-game-posters-container")
 const gameTitleInput = document.querySelector("#game-title")
 const selectedGamePoster = document.querySelector("#selected-game-poster")
 
+const selectedGenresInput = document.querySelector("#selected-genres")
+let selectedGenres = []
+
+
+form.addEventListener("submit", (event) => {
+    if (!selectedGamePoster.value || selectedGamePoster.value.trim() === "") {
+        event.preventDefault()
+        alert("Please select a game poster")
+    }
+
+    console.log(selectedGenresInput.value)
+
+    if (!selectedGenresInput.value || JSON.parse(selectedGenresInput.value).length < 1) {
+        event.preventDefault()
+        alert("Please select at least one genre")
+    }
+})
 
 
 document.addEventListener("click", (e) => {
@@ -49,16 +68,20 @@ function addTag(selectedValue, selectedValueIndexStore) {
     choice.classList.add("choice-p")
     choice.textContent = selectedValue
 
+
     choiceDiv.appendChild(closeButton)
     choiceDiv.appendChild(choice)
 
-    selectdGenres.appendChild(choiceDiv)
+    addGenreToInputValue(selectedValue)
+
+    selectdGenresDiv.appendChild(choiceDiv)
 }
 
 function removeTag(event) {
     const tagDiv = event.target.parentElement
     const index = Number(tagDiv.dataset.index)
     genres.options.add(genresOrder[index], index)
+    removeGenreFromInputValue(genresOrder[index].value)
     tagDiv.remove()
 }
 
@@ -105,7 +128,6 @@ async function displayGamePosters(gameTitle) {
     })
 }
 
-console.log(gameTitleInput)
 
 function debounce(inputSelector, functionRef) {
     let timer
@@ -143,6 +165,18 @@ gameTitleInput.addEventListener("focus", () => {
         showWrapper(gamePostersContainerWrapper)
     }
 })
+
+function addGenreToInputValue(genre) {
+    if (!selectedGenres.includes(genre)) {
+        selectedGenres.push(genre)
+        selectedGenresInput.value = JSON.stringify(selectedGenres)
+    }
+}
+
+function removeGenreFromInputValue(genreToBeRemoved) {
+    selectedGenres = selectedGenres.filter(genre => genre !== genreToBeRemoved)
+    selectedGenresInput.value = JSON.stringify(selectedGenres)
+}
 
 
 debounce(gameTitleInput, displayGamePosters)

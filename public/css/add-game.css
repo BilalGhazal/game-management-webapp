@@ -43,7 +43,7 @@
     cursor: pointer;
 }
 
-#selected-genres {
+#selected-genres-div {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -79,6 +79,7 @@
     display: none;
 }
 
+
 .suggested-game-posters-container {
     position: absolute;
     width: 100%;
@@ -90,6 +91,7 @@
     height: calc(var(--number-of-rows-for-games-posters) * var(--games-posters-row-height));
     overflow-y: scroll;
     background-color: white;
+    z-index: 2;
 }
 
 .suggested-game-poster-div {
