@@ -157,6 +157,8 @@ function selectGamePoster(event) {
         event.currentTarget.classList.add("selected")
         selectedGamePoster.value = event.currentTarget.children[0].src
     }
+
+    setTimeout(() => hideWrapper(gamePostersContainerWrapper), 300)
 }
 
 

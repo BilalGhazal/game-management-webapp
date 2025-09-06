@@ -14,5 +14,7 @@ router.get("/game/:id", gameController.getIndividualGamePage)
 
 router.get("/browse-genres/genre/:slug", gameController.getGamesInfoForGenre)
 
+router.post("/add-game", gameController.addGameDataToDatabase)
+
 
 module.exports = router
