@@ -20,8 +20,6 @@ form.addEventListener("submit", (event) => {
         alert("Please select a game poster")
     }
 
-    console.log(selectedGenresInput.value)
-
     if (!selectedGenresInput.value || JSON.parse(selectedGenresInput.value).length < 1) {
         event.preventDefault()
         alert("Please select at least one genre")
@@ -107,8 +105,6 @@ async function displayGamePosters(gameTitle) {
     gamePostersContainer.replaceChildren()
     showWrapper(gamePostersContainerWrapper)
 
-    console.log(gamePosters)
-
     if (gamePosters.length === 0) {
         const p = document.createElement("p")
         p.textContent = "No posters for this game. Make sure the game exists."
@@ -169,7 +165,7 @@ gameTitleInput.addEventListener("focus", () => {
 })
 
 function addGenreToInputValue(genre) {
-    if (!selectedGenres.includes(genre)) {
+    if (!selectedGenres.includes(genre) && genre !== '') {
         selectedGenres.push(genre)
         selectedGenresInput.value = JSON.stringify(selectedGenres)
     }

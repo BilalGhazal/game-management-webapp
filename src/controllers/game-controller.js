@@ -45,7 +45,6 @@ async function fetchGamePosters(req, res) {
         const gameData = await response.json()
         const numberOfImages = gameData.results.length >= 10 ? 10 : gameData.results.length
         const gameDataResults = gameData.results.splice(0, numberOfImages)
-        console.log(gameDataResults)
         const gamePosters = gameDataResults.map((game) => game.background_image)
 
         res.json(gamePosters)
@@ -57,4 +56,14 @@ async function fetchGamePosters(req, res) {
 }
 
 
-module.exports = {getIndividualGamePage, getGamesInfoForGenre, fetchGamePosters}
+async function addGameDataToDatabase(req, res) {
+    const gameTitle = req.body.gameTitle
+    const gamePoster = req.body.gamePoster
+    const developerName = req.body.developerName
+    const genres = JSON.parse(req.body.genres)
+   
+}
+
+
+
+module.exports = {getIndividualGamePage, getGamesInfoForGenre, fetchGamePosters, addGameDataToDatabase}
