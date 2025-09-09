@@ -61,7 +61,17 @@ async function addGameDataToDatabase(req, res) {
     const gamePoster = req.body.gamePoster
     const developerName = req.body.developerName
     const genres = JSON.parse(req.body.genres)
-   
+
+    try {
+        await db.insertGameInfo(gameTitle, developerName, gamePoster, genres)
+        console.log("Game added successfully!")
+    }
+
+    catch (err) {
+        console.log(`Adding game failed: ${err}`)
+    }
+
+    res.redirect("/")
 }
 
 

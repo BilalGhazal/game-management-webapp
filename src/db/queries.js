@@ -8,18 +8,21 @@ async function insertGameInfo(gameTitle, developerName, imageUrl, genres) {
     ON CONFLICT (name) DO NOTHING;`
 
     const insertGameInfoQuery = `INSERT INTO games (title, developer_id, image_url)
-    VALUES ($1, (SELECT id FROM developers WHERE name = $2), $3);`
+    VALUES ($1, (SELECT id FROM developers WHERE name = $2), $3) RETURNING id;`
 
     const updateJunctionTable = `INSERT INTO game_genres (game_id, genre_id)
-    SELECT (SELECT id FROM games WHERE title = $1), unnest(ARRAY(SELECT id FROM genres WHERE name in ANY($2)));`
+    SELECT $1, genres.id
+    FROM genres
+    WHERE genres.name = ANY($2::text[]);`
 
     const client = await pool.connect()
 
     try {
         await client.query("BEGIN;")
         await client.query(insertDeveloperNameQuery, [developerName])
-        await client.query(insertGameInfoQuery, [gameTitle, developerName, imageUrl])
-        await client.query(updateJunctionTable, [gameTitle, genres])
+        const gameResult = await client.query(insertGameInfoQuery, [gameTitle, developerName, imageUrl])
+        const gameId = gameResult.rows[0].id
+        await client.query(updateJunctionTable, [gameId, genres])
         await client.query("COMMIT;")
     }
 
