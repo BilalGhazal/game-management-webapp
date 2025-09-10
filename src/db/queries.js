@@ -79,4 +79,38 @@ async function getGamesForGenre(id) {
     return result.rows
 }
 
-module.exports = {insertGameInfo, getGamesInfo, getGenresFromDatabase, getIndividualGameInfo, getGamesForGenre}
+
+async function deleteGameFromDatabase(id) {
+    const deleteDeveloperQuery = `DELETE FROM developers
+    WHERE id IN (
+    SELECT developer_id
+    FROM games
+    WHERE id = $1
+    GROUP BY developer_id
+    HAVING COUNT(*) = 1
+    );`
+
+    const deleteGame = `DELETE FROM games
+    WHERE id = $1;`
+
+    const client = await pool.connect()
+
+    try {
+        await client.query("BEGIN;")
+        await client.query(deleteDeveloperQuery, [id])
+        await client.query(deleteGame, [id])
+        await client.query("COMMIT;")
+    }
+
+    catch(err) {
+        await client.query("ROLLBACK;")
+        throw err
+    }
+    
+    finally {
+        client.release()
+    }
+}
+
+
+module.exports = {insertGameInfo, getGamesInfo, getGenresFromDatabase, getIndividualGameInfo, getGamesForGenre, deleteGameFromDatabase}
