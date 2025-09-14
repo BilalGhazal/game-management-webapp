@@ -98,7 +98,7 @@ function hideWrapper(selector) {
 
 
 async function displayGamePosters(gameTitle) {
-    const url = `/api/games/search/:${gameTitle}`
+    const url = `/api/search/:${gameTitle}`
     const response = await fetch(url)
     const gamePosters = await response.json()
 

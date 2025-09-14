@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended: true}))
 
 
 app.use("/", indexRouter)
-app.use("/api/games", apiRouter)
+app.use("/api", apiRouter)
 
 
 app.listen(PORT, () => {

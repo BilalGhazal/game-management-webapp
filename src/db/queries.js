@@ -80,12 +80,16 @@ async function getGamesForGenre(id) {
 }
 
 
-async function deleteGameFromDatabase(id) {
+async function deleteGameInfo(id) {
+
     const deleteDeveloperQuery = `DELETE FROM developers
     WHERE id IN (
     SELECT developer_id
     FROM games
-    WHERE id = $1
+    WHERE developer_id = (
+    SELECT developer_id
+    FROM games
+    WHERE id = $1)
     GROUP BY developer_id
     HAVING COUNT(*) = 1
     );`
@@ -113,4 +117,4 @@ async function deleteGameFromDatabase(id) {
 }
 
 
-module.exports = {insertGameInfo, getGamesInfo, getGenresFromDatabase, getIndividualGameInfo, getGamesForGenre, deleteGameFromDatabase}
+module.exports = {insertGameInfo, getGamesInfo, getGenresFromDatabase, getIndividualGameInfo, getGamesForGenre, deleteGameInfo}

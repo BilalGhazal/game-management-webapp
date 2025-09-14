@@ -4,9 +4,9 @@ const slugify = require("slugify")
 
 async function getIndividualGamePage(req, res) {
     const id = req.params.id
-    const data = await db.getIndividualGameInfo(id)   
+    const data = await db.getIndividualGameInfo(id)
 
-    res.render("pages/individual-game-page", {title: data.title, data: data})
+    res.render("pages/individual-game-page", {title: data.title, data: data, pageJS: "individual-game-info"})
 }
 
 
@@ -75,5 +75,19 @@ async function addGameDataToDatabase(req, res) {
 }
 
 
+async function deleteGameFromDatabase(req, res) {
+    const id = req.params.id
 
-module.exports = {getIndividualGamePage, getGamesInfoForGenre, fetchGamePosters, addGameDataToDatabase}
+    try {
+        await db.deleteGameInfo(id)
+        res.status(200).end()
+    }
+
+    catch (err) {
+        res.status(500).end()
+        throw err
+    }
+}
+
+
+module.exports = {getIndividualGamePage, getGamesInfoForGenre, fetchGamePosters, addGameDataToDatabase, deleteGameFromDatabase}
