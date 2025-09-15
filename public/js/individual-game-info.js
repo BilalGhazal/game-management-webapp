@@ -4,11 +4,6 @@ const path = window.location.pathname
 const parts = path.split("/")
 const gameId = parts[2]
 
-console.log(gameId)
-console.log(`/delete/game/${gameId}`)
-
-
-
 
 async function deleteGame(id) {
     try {
