@@ -45,3 +45,7 @@ button, input, textarea, select {
     gap: 1rem;
     background-color: var(--background-color-main);
 }
+
+button:hover {
+    cursor: pointer;
+}

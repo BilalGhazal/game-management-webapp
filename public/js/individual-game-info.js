@@ -1,4 +1,7 @@
 const deleteButton = document.querySelector(".delete-button")
+const dialog = document.querySelector("#deleteGameDialog")
+const closeDialog = document.querySelector(".dialog-close-button")
+
 
 const path = window.location.pathname
 const parts = path.split("/")
@@ -21,5 +24,10 @@ async function deleteGame(id) {
 
 
 deleteButton.addEventListener("click", async () => {
-    await deleteGame(gameId)
+    dialog.showModal()
+})
+
+
+closeDialog.addEventListener("click", () => {
+    dialog.close()
 })
