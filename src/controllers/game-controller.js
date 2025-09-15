@@ -75,6 +75,19 @@ async function addGameDataToDatabase(req, res) {
 }
 
 
+function checkPassword(req, res) {
+    const password = req.body.password
+
+    if (password === process.env.DELETEGAMEPASSWORD) {
+        return res.status(200).end()
+    }
+
+    else {
+        return res.status(401).end()
+    }
+}
+
+
 async function deleteGameFromDatabase(req, res) {
     const id = req.params.id
 
@@ -90,4 +103,4 @@ async function deleteGameFromDatabase(req, res) {
 }
 
 
-module.exports = {getIndividualGamePage, getGamesInfoForGenre, fetchGamePosters, addGameDataToDatabase, deleteGameFromDatabase}
+module.exports = {getIndividualGamePage, getGamesInfoForGenre, fetchGamePosters, addGameDataToDatabase, checkPassword, deleteGameFromDatabase}

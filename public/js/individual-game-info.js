@@ -1,6 +1,9 @@
 const deleteButton = document.querySelector(".delete-button")
 const dialog = document.querySelector("#deleteGameDialog")
 const closeDialog = document.querySelector(".dialog-close-button")
+const form = document.querySelector("#deleteGameForm")
+const passwordInput = document.querySelector("#password")
+const confirmDeleteButton = document.querySelector(".dialog-delete-button")
 
 
 const path = window.location.pathname
@@ -30,4 +33,26 @@ deleteButton.addEventListener("click", async () => {
 
 closeDialog.addEventListener("click", () => {
     dialog.close()
+})
+
+
+confirmDeleteButton.addEventListener("click", async(event) => {
+    event.preventDefault()
+
+    const formData = new FormData(form)
+
+    const password = formData.get("password")
+
+    const response = await fetch("/api/delete/game/checkpassword", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password })
+    })
+
+    if (response.ok) {
+        alert("Password correct!")
+    }
+    else {
+        alert("Wrong password")
+    }
 })

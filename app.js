@@ -14,7 +14,7 @@ app.set("layout", "layouts/main")
 app.use(expressLayouts)
 app.use(express.static("public"))
 app.use(express.urlencoded({extended: true}))
-
+app.use(express.json())
 
 app.use("/", indexRouter)
 app.use("/api", apiRouter)
