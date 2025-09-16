@@ -54,6 +54,11 @@
 }
 
 .dialog-delete-button {
-    color: var(--font-color);
-    
+    color: var(--font-color);   
+}
+
+#deleteGameForm {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }

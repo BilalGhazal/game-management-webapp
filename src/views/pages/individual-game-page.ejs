@@ -3,8 +3,11 @@
         <button type="button" class="dialog-close-button">X</button>
         <p>Please enter password to delete game</p>
         <form method="post" id="deleteGameForm">
-            <input id="password" type="password" name="password" autofocus>
-            <button type="submit" class="dialog-delete-button">DELETE</button>
+            <div class="input-and-button-container">
+                <input id="password" type="password" name="password" autofocus required>
+                <button type="submit" class="dialog-delete-button">DELETE</button>
+            </div>
+            <span class="error-message"></span>
         </form>
     </div>
 </dialog>

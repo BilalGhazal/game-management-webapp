@@ -93,7 +93,7 @@ async function deleteGameFromDatabase(req, res) {
 
     try {
         await db.deleteGameInfo(id)
-        res.status(200).end()
+        res.send(200).end()
     }
 
     catch (err) {
