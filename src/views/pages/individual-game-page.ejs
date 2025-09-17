@@ -1,10 +1,10 @@
-<dialog role="alertdialog" aria-label="Delete Game Confirmation" id="deleteGameDialog">
+<dialog role="alertdialog" aria-label="Delete Game Confirmation" id="delete-game-dialog">
     <div class="dialog-container">
         <button type="button" class="dialog-close-button">X</button>
         <p>Please enter password to delete game</p>
-        <form method="post" id="deleteGameForm">
+        <form method="post" id="delete-game-form">
             <div class="input-and-button-container">
-                <input id="password" type="password" name="password" autofocus required>
+                <input id="password" type="password" name="password" autofocus required minlength="4" maxlength="12">
                 <button type="submit" class="dialog-delete-button">DELETE</button>
             </div>
             <span class="error-message"></span>

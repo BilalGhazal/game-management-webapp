@@ -1,3 +1,30 @@
+#delete-game-dialog {
+    background-color: var(--background-color-main);
+}
+
+.dialog-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog-close-button {
+    align-self: flex-end;
+}
+
+#delete-game-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.dialog-delete-button {
+    color: var(--font-color);   
+}
+
+
+
 .individual-game-main-container {
     height: 100%;
     display: flex;
@@ -40,25 +67,4 @@
 
 .delete-button {
     color: var(--font-color);
-}
-
-.dialog-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.dialog-close-button {
-    align-self: flex-end;
-}
-
-.dialog-delete-button {
-    color: var(--font-color);   
-}
-
-#deleteGameForm {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
 }
